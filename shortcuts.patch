@@ -1,0 +1,22 @@
+diff --git a/fbpad.c b/fbpad.c
+index 8ca6180..96f38e4 100644
+--- a/fbpad.c
++++ b/fbpad.c
+@@ -153,6 +153,7 @@ static void directkey(void)
+ 	char *shell[32] = SHELL;
+ 	char *mail[32] = MAIL;
+ 	char *editor[32] = EDITOR;
++    char *notes[32] = NOTES;
+ 	int c = readchar();
+ 	if (PASS && locked) {
+ 		if (c == '\r') {
+@@ -177,6 +178,9 @@ static void directkey(void)
+ 		case 'e':
+ 			execterm(editor);
+ 			return;
++        case 'n':
++            execterm(notes);
++            return;
+ 		case 'j':
+ 		case 'k':
+ 			showterm(altterm(cterm()));

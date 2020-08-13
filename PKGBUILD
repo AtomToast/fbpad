@@ -18,20 +18,23 @@ backup=()
 options=()
 install=${pkgname}.install
 source=("$pkgname::git://repo.or.cz/fbpad.git"
-        'conf.h' 'fbpad-256.info' 'LICENSE')
+        'conf.h' 'fbpad-256.info' 'LICENSE' 'shortcuts.patch')
 noextract=()
 md5sums=('SKIP'
-         '4ee1d0c9058a15a449a6bba9e5b9c78c'
+         '6213359f0a9ccc28172c6a97e8359a0c'
          '185b9d6ec1c539213226a3e2509c7ccd'
-         'ec67f29a7dec10f86ef31515ed657a91')
+         'ec67f29a7dec10f86ef31515ed657a91'
+         '2b56be038fad60338137eca3d86a47f2')
 sha1sums=('SKIP'
-          '283da1a6ab9531cc60e36bf2f0d961c8122ea434'
+          'bf9333f1faf9a93a6112761fd77e49adef5c5693'
           'dbb816fe37faf0acb4e1a916d7493787c2b647fc'
-          '76a535243054e1fdd9caaa46a1571cd381d74353')
+          '76a535243054e1fdd9caaa46a1571cd381d74353'
+          '1864dffead2338b7340eb20ec05ae9c848868031')
 sha256sums=('SKIP'
-            '5103c4f88566b9632199c0c4251f777f78934afae915781793d8334633d35589'
+            '4ce1e3f1a1305628d7511ac43971455e5be5d1278928787ab811b965fe582a60'
             'fb8ae049aa7d41fb285cbf7aa4487b28014273ebcfceefb4d58fb07018312e9c'
-            '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72')
+            '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
+            'c6316bbd3cb0cd6d4f88cd3cc0f3ef8e33829ea2f7c7fbcd6b3c467a7ef12419')
 
 pkgver() {
   cd $srcdir/$pkgname
@@ -42,6 +45,9 @@ prepare() {
   cd $srcdir/$pkgname
   ## Custom config.h
   cp $srcdir/conf.h conf.h
+
+  ## Add shortcuts
+  patch <"$srcdir/shortcuts.patch"
 }
 
 build() {
