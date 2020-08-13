@@ -1,7 +1,7 @@
 # Contributor: Sara <sara at archlinux dot us>
 # Maintainer: aksr <aksr at t-com dot me>
 pkgname=fbpad-git
-pkgver=r271.66eb566
+pkgver=r273.52b6bed
 pkgrel=1
 pkgdesc="A small linux framebuffer virtual terminal."
 arch=('i686' 'x86_64')
@@ -21,15 +21,15 @@ source=("$pkgname::git://repo.or.cz/fbpad.git"
         'conf.h' 'fbpad-256.info' 'LICENSE')
 noextract=()
 md5sums=('SKIP'
-         'efe9649ca617e55d526921b0a9105c9e'
+         '4ee1d0c9058a15a449a6bba9e5b9c78c'
          '185b9d6ec1c539213226a3e2509c7ccd'
          'ec67f29a7dec10f86ef31515ed657a91')
 sha1sums=('SKIP'
-          '4cd6b4cbf2c25626c4e4d60b21726d0baf6092d8'
+          '283da1a6ab9531cc60e36bf2f0d961c8122ea434'
           'dbb816fe37faf0acb4e1a916d7493787c2b647fc'
           '76a535243054e1fdd9caaa46a1571cd381d74353')
 sha256sums=('SKIP'
-            '6f964a7b68108de13bcd4a8825a713c67a7a928a5f664406fd6e21fb0247178b'
+            '5103c4f88566b9632199c0c4251f777f78934afae915781793d8334633d35589'
             'fb8ae049aa7d41fb285cbf7aa4487b28014273ebcfceefb4d58fb07018312e9c'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72')
 
@@ -59,10 +59,10 @@ package() {
   tic -x -o $pkgdir/usr/share/terminfo $srcdir/fbpad-256.info
 
   ## Setup fonts
-  if [ -x /usr/bin/fbpad-mkfn ]; then FT2TF="fbpad-mkfn -h20 -w10"; SZ="17h120v100b0a1"; else FT2TF=ft2tf; SZ=6; fi
-  $FT2TF /usr/share/fonts/TTF/DejaVuSansMono.ttf:$SZ         > $srcdir/font-r.tf
-  $FT2TF /usr/share/fonts/TTF/DejaVuSansMono-Oblique.ttf:$SZ > $srcdir/font-i.tf
-  $FT2TF /usr/share/fonts/TTF/DejaVuSansMono-Bold.ttf:$SZ    > $srcdir/font-b.tf
+  if [ -x /usr/bin/fbpad-mkfn ]; then FT2TF="fbpad-mkfn -h18 -w9"; SZ="8h125v125b0a1"; else FT2TF=ft2tf; SZ=5; fi
+  $FT2TF /usr/share/fonts/nerd-fonts-complete/TTF/Hack\ Regular\ Nerd\ Font\ Complete.ttf:$SZ > $srcdir/font-r.tf
+  $FT2TF /usr/share/fonts/nerd-fonts-complete/TTF/Hack\ Italic\ Nerd\ Font\ Complete.ttf:$SZ  > $srcdir/font-i.tf
+  $FT2TF /usr/share/fonts/nerd-fonts-complete/TTF/Hack\ Bold\ Nerd\ Font\ Complete.ttf:$SZ    > $srcdir/font-b.tf
 
   ## Install fonts
   install -Dm644 ../font-r.tf $pkgdir/usr/share/${pkgname%-*}/font-r.tf
