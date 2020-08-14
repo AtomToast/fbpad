@@ -1,0 +1,33 @@
+--- fbpad2.c	2020-08-14 11:30:48.350313751 +0200
++++ fbpad.c	2020-08-14 11:47:14.650329104 +0200
+@@ -169,10 +169,18 @@
+     char *notes[32] = NOTES;
+ 	int c = readchar();
+ 	if (PASS && locked) {
++		pad_fill(0, -1, 0, -1, COLOR4);
+ 		if (c == '\r') {
+ 			pass[passlen] = '\0';
+ 			if (!strcmp(PASS, pass))
++			{
+ 				locked = 0;
++				term_redraw(1);
++			}
++			else
++			{
++				pad_fill(0, -1, 0, -1, COLOR1);
++			}
+ 			passlen = 0;
+ 			return;
+ 		}
+@@ -220,9 +228,10 @@
+ 		case 'y':
+ 			term_redraw(1);
+ 			return;
+-		case CTRLKEY('l'):
++		case 'L':
+ 			locked = 1;
+ 			passlen = 0;
++			pad_fill(0, -1, 0, -1, 0);
+ 			return;
+ 		case CTRLKEY('o'):
+ 			taglock = 1 - taglock;
