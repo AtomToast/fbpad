@@ -1,5 +1,5 @@
 diff --git a/fbpad.c b/fbpad.c
-index 8ca6180..64f9ee5 100644
+index 8ca6180..dbfd135 100644
 --- a/fbpad.c
 +++ b/fbpad.c
 @@ -26,6 +26,7 @@
@@ -14,11 +14,11 @@ index 8ca6180..64f9ee5 100644
  		term_exec(args);
  }
  
-+static void command(char *a)
++static void spawn(char *cmd)
 +{
 +    if(fork() == 0)
 +    {
-+        execlp("/bin/sh", "sh", "-c", a, NULL);
++        execlp("sh", "sh", "-c", cmd, NULL);
 +    }
 +}
 +
@@ -48,7 +48,7 @@ index 8ca6180..64f9ee5 100644
  			term_screenshot();
  			return;
 +		case CTRLKEY('s'):
-+			command("fbgrab $HOME/Pictures/screenshots/screenshot-$(date +\"%F-%H-%M-%S\").png 2>/dev/null");
++			spawn("fbgrab $HOME/Pictures/screenshots/screenshot-$(date +\"%F-%H-%M-%S\").png 2>/dev/null");
 +			return;
  		case 'y':
  			term_redraw(1);

@@ -24,17 +24,17 @@ md5sums=('SKIP'
          '6213359f0a9ccc28172c6a97e8359a0c'
          '185b9d6ec1c539213226a3e2509c7ccd'
          'ec67f29a7dec10f86ef31515ed657a91'
-         '1dd44c1181a11c93a7ff84db6ee5c68a')
+         '7cb5fd2c0cc2d3b8bdbd4d037fe315fe')
 sha1sums=('SKIP'
           'bf9333f1faf9a93a6112761fd77e49adef5c5693'
           'dbb816fe37faf0acb4e1a916d7493787c2b647fc'
           '76a535243054e1fdd9caaa46a1571cd381d74353'
-          'b8c7b92b2222253588a777dbb120a56df86f14b7')
+          '61dc7612f0473357b548a27c5bd2dc07d9d28576')
 sha256sums=('SKIP'
             '4ce1e3f1a1305628d7511ac43971455e5be5d1278928787ab811b965fe582a60'
             'fb8ae049aa7d41fb285cbf7aa4487b28014273ebcfceefb4d58fb07018312e9c'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
-            'd8c94634d1d035bb2d6de3a92aeb5702304ceeb9d54fdc53983cbe8d30f9e135')
+            '1b0aad56c0d232666a8e57afdc1314bbe8b6cb293e79fc28d40057c561d77b3d')
 
 pkgver() {
   cd $srcdir/$pkgname
