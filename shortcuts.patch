@@ -1,8 +1,31 @@
 diff --git a/fbpad.c b/fbpad.c
-index 8ca6180..96f38e4 100644
+index 8ca6180..64f9ee5 100644
 --- a/fbpad.c
 +++ b/fbpad.c
-@@ -153,6 +153,7 @@ static void directkey(void)
+@@ -26,6 +26,7 @@
+ #include <sys/wait.h>
+ #include <termios.h>
+ #include <unistd.h>
++#include <dirent.h>
+ #include <linux/vt.h>
+ #include "conf.h"
+ #include "fbpad.h"
+@@ -120,6 +121,14 @@ static void execterm(char **args)
+ 		term_exec(args);
+ }
+ 
++static void command(char *a)
++{
++    if(fork() == 0)
++    {
++        execlp("/bin/sh", "sh", "-c", a, NULL);
++    }
++}
++
+ static void listtags(void)
+ {
+ 	/* colors for tags based on their number of terminals */
+@@ -153,6 +162,7 @@ static void directkey(void)
  	char *shell[32] = SHELL;
  	char *mail[32] = MAIL;
  	char *editor[32] = EDITOR;
@@ -10,7 +33,7 @@ index 8ca6180..96f38e4 100644
  	int c = readchar();
  	if (PASS && locked) {
  		if (c == '\r') {
-@@ -177,6 +178,9 @@ static void directkey(void)
+@@ -177,6 +187,9 @@ static void directkey(void)
  		case 'e':
  			execterm(editor);
  			return;
@@ -20,3 +43,13 @@ index 8ca6180..96f38e4 100644
  		case 'j':
  		case 'k':
  			showterm(altterm(cterm()));
+@@ -197,6 +210,9 @@ static void directkey(void)
+ 		case 's':
+ 			term_screenshot();
+ 			return;
++		case CTRLKEY('s'):
++			command("fbgrab $HOME/Pictures/screenshots/screenshot-$(date +\"%F-%H-%M-%S\").png 2>/dev/null");
++			return;
+ 		case 'y':
+ 			term_redraw(1);
+ 			return;
