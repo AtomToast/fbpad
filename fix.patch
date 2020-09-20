@@ -1,0 +1,13 @@
+diff --git a/term.c b/term.c
+index 31048d5..d80b00e 100644
+--- a/term.c
++++ b/term.c
+@@ -329,7 +329,7 @@ static void envcpy(char **d, char **s)
+ 	int i = 0, j = 0;
+ 	while (s[i] && j < MAXENV - 2) {
+ 		d[j] = s[i++];
+-		if (!memcmp(d[j], "TERM=", 5))
++		if (memcmp(d[j], "TERM=", 5))
+ 			j++;
+ 	}
+ 	d[j++] = "TERM=" TERM;
